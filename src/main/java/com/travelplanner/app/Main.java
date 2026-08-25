@@ -1,17 +1,43 @@
 package com.travelplanner.app;
 
+import com.travelplanner.model.Jugador;
+import com.travelplanner.model.Juego;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner scanner = new Scanner(System.in);
+        List<Map<Integer, String>> listaCasillas = new ArrayList<>();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        listaCasillas = [{}];
+        ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
+
+        System.out.print("Ingresa tu nombre");
+        String nombre1 = scanner.nextLine();
+        System.out.print("Bienvenido " + nombre1 + "!!!");
+        String figura1 = "x";
+
+        System.out.print("Ingresa tu nombre");
+        String nombre2 = scanner.nextLine();
+        System.out.print("Bienvenido " + nombre2 + "!!!");
+        String figura2 = "x";
+
+        Jugador jugador1 = new Jugador(nombre1, figura1);
+        Jugador jugador2 = new Jugador(nombre2, figura2);
+
+        jugadores.add(jugador1);
+        jugadores.add(jugador2);
+
+        Juego juego = new Juego();
+        juego.setJugadores
+
+
+
     }
 }
