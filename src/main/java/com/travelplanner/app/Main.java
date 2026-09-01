@@ -12,7 +12,7 @@ public class Main {
         List<Map<Integer, String>> listaCasillas = new ArrayList<>();
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 
-
+    // inicializar las casillas
         Map<Integer, String> c1 = new HashMap<>();
         c1.put(1, "_");
         listaCasillas.add(c1);
@@ -78,6 +78,7 @@ public class Main {
 //        String valor9 = c9.get(9);
 
 
+        // crear jugadores
         System.out.print("Ingresa tu nombre   ");
         String nombre1 = scanner.nextLine();
         System.out.print("Bienvenido " + nombre1 + "!!!\n");
@@ -106,40 +107,7 @@ public class Main {
 
 
         // borrador de logica
-        boolean stop = true;
-        Jugador jugador = jugador1;
 
-        while (stop) {
-            System.out.println("va " + jugador);
-            System.out.print("En que casilla quieres jugar   ");
-            int posicion1 = Integer.parseInt(scanner.nextLine());
-
-
-            Map<Integer, String> casilla = listaCasillas.get(posicion1 - 1);
-            System.out.println(casilla);
-            System.out.println(casilla.get(posicion1));
-
-            if (casilla.get(posicion1) == "_") {
-                casilla.replace(posicion1, jugador.getFigura());
-                String tabla1 = ("_" + c1.get(1) + "_|_" + c2.get(2)+ "_|_" + c3.get(3) + "_\n" +
-                        "_" + c4.get(4)+ "_|_" + c5.get(5) + "_|_"+ c6.get(6) + "_\n" +
-                        " " + c7.get(7)+ " | " + c8.get(8) + " | "+ c9.get(9) + "\n");
-
-
-
-
-
-                if (jugador == jugador1) {
-                    jugador = jugador2;
-                } else if (jugador == jugador2) {
-                    jugador = jugador1;
-                }
-                System.out.println(tabla1);
-            } else {
-                System.out.println("esa casilla ya esta ocupada, sorry");
-                stop = false;
-            }
-        }
 
 
 
