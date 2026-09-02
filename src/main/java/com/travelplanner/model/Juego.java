@@ -61,7 +61,7 @@ public class Juego {
                 System.out.println("esa casilla ya esta ocupada, sorry");
                 stop = false;
             }
-        } return tabla1;
+        } return "Hola como estas ";
     }
 
 
