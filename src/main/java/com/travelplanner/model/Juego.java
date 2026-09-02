@@ -65,6 +65,8 @@ public class Juego {
     }
 
 
+
+
     // metodo para jugar
     public String jugar (List < Jugador > listJugadores) {
         boolean stop = true;
@@ -97,6 +99,7 @@ public class Juego {
                 System.out.println("esa casilla ya esta ocupada, sorry");
                 stop = false;
             }
+
         }
         return "Hola como estas ";
     }
@@ -115,5 +118,20 @@ public class Juego {
 
     public void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
+    }
+
+
+    public Jugador validarGanador(List < Jugador > listJugadores){
+
+        int posicion1 = pedirPosicionCasilla();
+        Map<Integer, String> casilla = listaCasillas.get(posicion1 - 1);
+        Jugador jugador1 = listJugadores.getFirst();
+        Jugador jugador2 = listJugadores.getLast();
+
+        if (listaCasillas.getFirst().get(1) == listaCasillas.get(1).get(2) && listaCasillas.get(1).get(2) == listaCasillas.get(2).get(3) && listaCasillas.get(2).get(3) == "x" ){
+            return jugador1;
+        } else{
+            return jugador2;
+        }
     }
 }
