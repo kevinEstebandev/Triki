@@ -71,42 +71,44 @@ public class Juego {
         // optiene el primer jugador
         Jugador jugador = listJugadores.getFirst();
         Jugador jugador2 = listJugadores.getLast();
+        Jugador jugadorMomento = jugador;
+
 
         while (stop) {
-                Jugador jugadorMomento = jugador;
-                System.out.println("va " + jugadorMomento);
-                int posicion1 = pedirPosicionCasilla();
+            System.out.println("va " + jugadorMomento);
+            int posicion1 = pedirPosicionCasilla();
 
-                Map<Integer, String> casilla = listaCasillas.get(posicion1 - 1);
-                System.out.println(casilla);
-                System.out.println(casilla.get(posicion1));
+            Map<Integer, String> casilla = listaCasillas.get(posicion1 - 1);
+            System.out.println(casilla);
+            System.out.println(casilla.get(posicion1));
 
-                if (casilla.get(posicion1) == "_") {
-                    casilla.replace(posicion1, jugadorMomento.getFigura());
-                    String tabla1 = ("_" + listaCasillas.getFirst().get(1) + "_|_" + listaCasillas.get(1).get(2) + "_|_" + listaCasillas.get(2).get(3) + "_\n" +
-                            "_" + listaCasillas.get(3).get(4) + "_|_" + listaCasillas.get(4).get(5) + "_|_" + listaCasillas.get(5).get(6) + "_\n" +
-                            " " + listaCasillas.get(6).get(7) + " | " + listaCasillas.get(7).get(8) + " | " + listaCasillas.getLast().get(9) + "\n");
-                    System.out.println(tabla1);
+            if (casilla.get(posicion1) == "_") {
+                casilla.replace(posicion1, jugadorMomento.getFigura());
+                String tabla1 = ("_" + listaCasillas.getFirst().get(1) + "_|_" + listaCasillas.get(1).get(2) + "_|_" + listaCasillas.get(2).get(3) + "_\n" +
+                        "_" + listaCasillas.get(3).get(4) + "_|_" + listaCasillas.get(4).get(5) + "_|_" + listaCasillas.get(5).get(6) + "_\n" +
+                        " " + listaCasillas.get(6).get(7) + " | " + listaCasillas.get(7).get(8) + " | " + listaCasillas.getLast().get(9) + "\n");
+                System.out.println(tabla1);
 
-
-                    if (jugadorMomento == jugador) {
-                        jugadorMomento = jugador2;
-                    } else {
-                        jugadorMomento = jugador;
-                    }
-                    System.out.println(tabla1);
+                if (jugadorMomento == jugador) {
+                    jugadorMomento = jugador2;
                 } else {
-                    System.out.println("esa casilla ya esta ocupada, sorry");
-                    stop = false;
+                    jugadorMomento = jugador;
                 }
+
+            } else {
+                System.out.println("esa casilla ya esta ocupada, sorry");
+                stop = false;
             }
-            return "Hola como estas ";
         }
+        return "Hola como estas ";
+    }
 
 
-        public int pedirPosicionCasilla () {
-            System.out.print("En que casilla quieres jugar   ");
-            int posicion1 = scanner.nextInt();
-            return posicion1;
-        }
+    public int pedirPosicionCasilla () {
+        System.out.print("En que casilla quieres jugar   ");
+        int posicion1 = scanner.nextInt();
+        return posicion1;
+    }
+
+    
 }
