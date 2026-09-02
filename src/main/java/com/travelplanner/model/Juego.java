@@ -66,6 +66,6 @@ public class Juego {
 
     public int pedirPosicionCasilla(){
         System.out.print("En que casilla quieres jugar   ");
-        
+
     }
 }
