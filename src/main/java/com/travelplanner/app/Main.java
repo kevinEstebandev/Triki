@@ -50,33 +50,6 @@ public class Main {
         listaCasillas.add(c9);
 
 
-//        c1.replace(1, "x");
-//        String valor = c1.get(1);
-//
-//        c2.replace(2, "0");
-//        String valor2 = c2.get(2);
-//
-//        c3.replace(3, "x");
-//        String valor3 = c3.get(3);
-//
-//        c4.replace(4, "x");
-//        String valor4 = c4.get(4);
-//
-//        c5.replace(5, "0");
-//        String valor5 = c5.get(5);
-//
-//        c6.replace(6, "0");
-//        String valor6 = c6.get(6);
-//
-//        c7.replace(7, "x");
-//        String valor7 = c7.get(7);
-//
-//        c8.replace(8, "0");
-//        String valor8 = c8.get(8);
-//
-//        c9.replace(9, "0");
-//        String valor9 = c9.get(9);
-
 
         // crear jugadores
         System.out.print("Ingresa tu nombre   ");

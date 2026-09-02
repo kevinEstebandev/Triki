@@ -1,18 +1,55 @@
 package com.travelplanner.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.*;
 
 public class Juego {
 
     private List<Jugador> listJugadores;
-    private List<Map<Integer, String>> listaCasillas;
+    public List<Map<Integer, String>> listaCasillas = new ArrayList<>();
 
-    public Juego (List<Jugador> jugadores, List<Map<Integer, String>> casillas){
-
+    public Juego (List<Jugador> jugadores){
         listJugadores = jugadores;
-        listaCasillas = casillas;
+
+        // inicializar las casillas
+        Map<Integer, String> c1 = new HashMap<>();
+        c1.put(1, "_");
+        listaCasillas.add(c1);
+
+        Map<Integer, String> c2 = new HashMap<>();
+        c2.put(2, "_");
+        listaCasillas.add(c2);
+
+        Map<Integer, String> c3 = new HashMap<>();
+        c3.put(3, "_");
+        listaCasillas.add(c3);
+
+        Map<Integer, String> c4 = new HashMap<>();
+        c4.put(4, "_");
+        listaCasillas.add(c4);
+
+        Map<Integer, String> c5 = new HashMap<>();
+        c5.put(5, "_");
+        listaCasillas.add(c5);
+
+        Map<Integer, String> c6 = new HashMap<>();
+        c6.put(6, "_");
+        listaCasillas.add(c6);
+
+        Map<Integer, String> c7 = new HashMap<>();
+        c7.put(7, "_");
+        listaCasillas.add(c7);
+
+        Map<Integer, String> c8 = new HashMap<>();
+        c8.put(8, "_");
+        listaCasillas.add(c8);
+
+        Map<Integer, String> c9 = new HashMap<>();
+        c9.put(9, "_");
+        listaCasillas.add(c9);
     }
 
 
@@ -26,7 +63,7 @@ public class Juego {
 
 
     // metodo para jugar
-    public String jugar(List<Jugador> listJugadores, int posicion1) {
+    public String jugar(List<Jugador> listJugadores) {
         boolean stop = true;
         // optiene el primer jugador
         Jugador jugador = listJugadores.getFirst();
@@ -35,7 +72,7 @@ public class Juego {
         while (stop) {
             Jugador jugadorMomento = jugador;
             System.out.println("va " + jugadorMomento);
-
+            int posicion1 = pedirPosicionCasilla();
 
 
 
@@ -45,10 +82,10 @@ public class Juego {
 
             if (casilla.get(posicion1) == "_") {
                 casilla.replace(posicion1, jugadorMomento.getFigura());
-                String tabla1 = ("_" + c1.get(1) + "_|_" + c2.get(2)+ "_|_" + c3.get(3) + "_\n" +
-                        "_" + c4.get(4)+ "_|_" + c5.get(5) + "_|_"+ c6.get(6) + "_\n" +
-                        " " + c7.get(7)+ " | " + c8.get(8) + " | "+ c9.get(9) + "\n");
-
+                String tabla1 = ("_" + listaCasillas.getFirst().get(1) + "_|_" + listaCasillas.get(1).get(2)+ "_|_" + listaCasillas.get(2).get(3) + "_\n" +
+                        "_" + listaCasillas.get(3).get(4)+ "_|_" + listaCasillas.get(4).get(5) + "_|_"+ listaCasillas.get(5).get(6) + "_\n" +
+                        " " + listaCasillas.get(6).get(7)+ " | " + listaCasillas.get(7).get(8) + " | "+ listaCasillas.getLast().get(9) + "\n");
+                System.out.println(tabla1);
 
 
                 if (jugadorMomento == jugador) {
