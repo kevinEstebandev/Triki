@@ -3,24 +3,27 @@ package com.travelplanner.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Juego {
 
+
+    Scanner scanner = new Scanner(System.in);
     private List<Jugador> listJugadores;
     private List<Map<Integer, String>> listaCasillas;
 
-    public Juego (List<Jugador> jugadores, List<Map<Integer, String>> casillas){
+    public Juego(List<Jugador> jugadores, List<Map<Integer, String>> casillas) {
 
         listJugadores = jugadores;
         listaCasillas = casillas;
     }
 
 
-    public List<Jugador> getListJugadores(){
+    public List<Jugador> getListJugadores() {
         return listJugadores;
     }
 
-    public void setListJugadores(List<Jugador> listJugadores){
+    public void setListJugadores(List<Jugador> listJugadores) {
         this.listJugadores = listJugadores;
     }
 
@@ -37,18 +40,15 @@ public class Juego {
             System.out.println("va " + jugadorMomento);
 
 
-
-
             Map<Integer, String> casilla = listaCasillas.get(posicion1 - 1);
             System.out.println(casilla);
             System.out.println(casilla.get(posicion1));
 
             if (casilla.get(posicion1) == "_") {
                 casilla.replace(posicion1, jugadorMomento.getFigura());
-                String tabla1 = ("_" + c1.get(1) + "_|_" + c2.get(2)+ "_|_" + c3.get(3) + "_\n" +
-                        "_" + c4.get(4)+ "_|_" + c5.get(5) + "_|_"+ c6.get(6) + "_\n" +
-                        " " + c7.get(7)+ " | " + c8.get(8) + " | "+ c9.get(9) + "\n");
-
+                String tabla1 = ("_" + c1.get(1) + "_|_" + c2.get(2) + "_|_" + c3.get(3) + "_\n" +
+                        "_" + c4.get(4) + "_|_" + c5.get(5) + "_|_" + c6.get(6) + "_\n" +
+                        " " + c7.get(7) + " | " + c8.get(8) + " | " + c9.get(9) + "\n");
 
 
                 if (jugadorMomento == jugador) {
@@ -61,11 +61,17 @@ public class Juego {
                 System.out.println("esa casilla ya esta ocupada, sorry");
                 stop = false;
             }
-        }
+        } return tabla1;
     }
+
+
 
     public int pedirPosicionCasilla(){
         System.out.print("En que casilla quieres jugar   ");
-
+        int posicion1 = scanner.nextInt();
+        return posicion1;
     }
+
+
+
 }
