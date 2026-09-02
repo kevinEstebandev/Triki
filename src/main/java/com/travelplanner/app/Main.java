@@ -10,7 +10,6 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        List<Map<Integer, String>> listaCasillas = new ArrayList<>();
         ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 
 
@@ -32,7 +31,6 @@ public class Main {
         jugadores.add(jugador2);
 
         System.out.println("JUGADORES: \n" + jugadores);
-        System.out.println(listaCasillas);
 
 
         Juego juego1 = new Juego(jugadores);

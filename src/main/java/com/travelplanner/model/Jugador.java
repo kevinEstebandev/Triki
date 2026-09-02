@@ -31,6 +31,6 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return "nombre = " + nombre + " y su figura es " + figura + "\n";
+        return "\nnombre: " + nombre + ", figura: " + figura + "\n";
     }
 }

@@ -79,8 +79,6 @@ public class Juego {
             int posicion1 = pedirPosicionCasilla();
 
             Map<Integer, String> casilla = listaCasillas.get(posicion1 - 1);
-            System.out.println(casilla);
-            System.out.println(casilla.get(posicion1));
 
             if (casilla.get(posicion1) == "_") {
                 casilla.replace(posicion1, jugadorMomento.getFigura());
@@ -110,5 +108,12 @@ public class Juego {
         return posicion1;
     }
 
-    
+
+    public String generarMensaje(Jugador jugador) {
+        return "Felicidades " + jugador.toString() + " ha ganado. Besitos";
+    }
+
+    public void mostrarMensaje(String mensaje) {
+        System.out.println(mensaje);
+    }
 }
