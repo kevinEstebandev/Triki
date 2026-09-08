@@ -4,11 +4,13 @@ public class Jugador {
 
     private String nombre;
     private String figura;
+    private int turno;
 
     public Jugador(String nombre, String figura) {
 
         this.nombre = nombre;
         this.figura = figura;
+        this.turno = turno;
     }
 
 
@@ -29,8 +31,16 @@ public class Jugador {
         this.nombre = nombre;
     }
 
+    public int getTurno() {
+        return turno;
+    }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
+    }
+
     @Override
     public String toString() {
-        return "\nnombre: " + nombre + ", figura: " + figura + "\n";
+        return "nombre: " + nombre + ", figura: " + figura + ", turno: " + turno +"\n";
     }
 }

@@ -64,44 +64,11 @@ public class Juego {
         this.listJugadores = listJugadores;
     }
 
-
-
-
     // metodo para jugar
-    public String jugar (List < Jugador > listJugadores) {
-        boolean stop = true;
-        // optiene el primer jugador
-        Jugador jugador = listJugadores.getFirst();
-        Jugador jugador2 = listJugadores.getLast();
-        Jugador jugadorMomento = jugador;
-
-
-        while (stop) {
-            System.out.println("va " + jugadorMomento);
-            int posicion1 = pedirPosicionCasilla();
-
-            Map<Integer, String> casilla = listaCasillas.get(posicion1 - 1);
-
-            if (casilla.get(posicion1) == "_") {
-                casilla.replace(posicion1, jugadorMomento.getFigura());
-                String tabla1 = ("_" + listaCasillas.getFirst().get(1) + "_|_" + listaCasillas.get(1).get(2) + "_|_" + listaCasillas.get(2).get(3) + "_\n" +
-                        "_" + listaCasillas.get(3).get(4) + "_|_" + listaCasillas.get(4).get(5) + "_|_" + listaCasillas.get(5).get(6) + "_\n" +
-                        " " + listaCasillas.get(6).get(7) + " | " + listaCasillas.get(7).get(8) + " | " + listaCasillas.getLast().get(9) + "\n");
-                System.out.println(tabla1);
-
-                if (jugadorMomento == jugador) {
-                    jugadorMomento = jugador2;
-                } else {
-                    jugadorMomento = jugador;
-                }
-
-            } else {
-                System.out.println("esa casilla ya esta ocupada, sorry");
-                stop = false;
-            }
-
-        }
-        return "Hola como estas ";
+    public void jugar (List < Jugador > listJugadores) {
+        Jugador jugadorGanador = iniciarRonda(listJugadores);
+        String mensaje = generarMensaje(jugadorGanador);
+        mostrarMensaje(mensaje);
     }
 
 
@@ -111,6 +78,103 @@ public class Juego {
         return posicion1;
     }
 
+    public Jugador iniciarRonda (List < Jugador > listJugadores) {
+        // optiene el primer jugador
+        Jugador jugadorMomento = listJugadores.getFirst();
+
+        boolean stop = true;
+        while (true) {
+            System.out.println("va " + jugadorMomento);
+            int posicion = pedirPosicionCasilla();
+            boolean stopOcupado = armarTabla(posicion, jugadorMomento);
+            stop = pararJuegoSiGana(listJugadores);
+
+            if (!stopOcupado) {
+                continue;
+            }
+
+            if (!stop) {
+                break;
+            }
+
+            if (jugadorMomento.getTurno() == 1) {
+                jugadorMomento = listJugadores.getLast();
+
+            } else {
+                jugadorMomento = listJugadores.getFirst();
+
+            }
+        }
+        return jugadorMomento;
+    }
+
+
+    public boolean armarTabla(int posicion, Jugador jugadorMomento) {
+
+        Map<Integer, String> casilla = listaCasillas.get(posicion - 1);
+        if (casilla.get(posicion) == "_") {
+            casilla.replace(posicion, jugadorMomento.getFigura());
+            String tabla = ("_" + listaCasillas.getFirst().get(1) + "_|_" + listaCasillas.get(1).get(2) + "_|_" + listaCasillas.get(2).get(3) + "_\n" +
+                    "_" + listaCasillas.get(3).get(4) + "_|_" + listaCasillas.get(4).get(5) + "_|_" + listaCasillas.get(5).get(6) + "_\n" +
+                    " " + listaCasillas.get(6).get(7) + " | " + listaCasillas.get(7).get(8) + " | " + listaCasillas.getLast().get(9) + "\n");
+            mostrarMensaje(tabla);
+            return true;
+        } else {
+            System.out.println("esa casilla ya esta ocupada, sorry");
+            return false;
+        }
+    }
+
+
+    public boolean pararJuegoSiGana (List < Jugador > listJugadores){
+        String c1 = listaCasillas.getFirst().get(1);
+        String c2 = listaCasillas.get(1).get(2);
+        String c3 = listaCasillas.get(2).get(3);
+        String c4 = listaCasillas.get(3).get(4);
+        String c5 = listaCasillas.get(4).get(5);
+        String c6 = listaCasillas.get(5).get(6);
+        String c7 = listaCasillas.get(6).get(7);
+        String c8 = listaCasillas.get(7).get(8);
+        String c9 = listaCasillas.getLast().get(9);
+
+
+        if (c1 == c2 && c2 == c3 && c3 == "x" || c1 == c2 && c2 == c3 && c3 == "o"){
+            return false;  // si la condicion para ganar se cumple entonces para el juego
+        }
+
+        else if (c4 == c5 && c5 == c6 && c6 == "x" || c4 == c5 && c5 == c6 && c6 == "o" ){
+            return false;
+        }
+
+        else if (c7 == c8 && c8 == c9 && c9 == "x" ||c7 == c8 && c8 == c9 && c9 == "o" ){
+            return false;
+        }
+
+        else if (c1 == c5 && c5 == c9 && c9 == "x" || c1 == c5 && c5 == c9 && c9 == "o" ){
+            return false;
+        }
+
+        else if (c3 == c5 && c5 == c7 && c7 == "x" || c3 == c5 && c5 == c7 && c7 == "o" ){
+            return false;
+        }
+
+        else if (c1 == c4 && c4 == c7 && c7 == "x" || c1 == c4 && c4 == c7 && c7 == "o" ){
+            return false;
+        }
+
+        else if (c2 == c5 && c5 == c8 && c8 == "x" || c2 == c5 && c5 == c8 && c8 == "o" ){
+            return false;
+        }
+
+        else if (c3 == c6 && c6 == c9 && c9 == "x" || c3 == c6 && c6 == c9 && c9 ==  "o" ){
+            return false;
+        }
+
+        else {
+            // aca debe estar la logica para que pare y que ninguno haya ganado
+            return true;
+        }
+    }
 
     public String generarMensaje(Jugador jugador) {
         return "Felicidades " + jugador.toString() + " ha ganado. Besitos";
@@ -118,20 +182,5 @@ public class Juego {
 
     public void mostrarMensaje(String mensaje) {
         System.out.println(mensaje);
-    }
-
-
-    public Jugador validarGanador(List < Jugador > listJugadores){
-
-        int posicion1 = pedirPosicionCasilla();
-        Map<Integer, String> casilla = listaCasillas.get(posicion1 - 1);
-        Jugador jugador1 = listJugadores.getFirst();
-        Jugador jugador2 = listJugadores.getLast();
-
-        if (listaCasillas.getFirst().get(1) == listaCasillas.get(1).get(2) && listaCasillas.get(1).get(2) == listaCasillas.get(2).get(3) && listaCasillas.get(2).get(3) == "x" ){
-            return jugador1;
-        } else{
-            return jugador2;
-        }
     }
 }

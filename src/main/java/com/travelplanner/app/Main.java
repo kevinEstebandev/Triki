@@ -18,17 +18,19 @@ public class Main {
         String nombre1 = scanner.nextLine();
         System.out.print("Bienvenido " + nombre1 + "!!!\n");
         String figura1 = "x";
+        Jugador jugador1 = new Jugador(nombre1, figura1);
+        jugadores.add(jugador1);
+        int turno1 = jugadores.size();
+        jugador1.setTurno(turno1);
 
         System.out.print("Ingresa tu nombre   ");
         String nombre2 = scanner.nextLine();
         System.out.print("Bienvenido " + nombre2 + "!!!\n");
         String figura2 = "o";
-
-        Jugador jugador1 = new Jugador(nombre1, figura1);
         Jugador jugador2 = new Jugador(nombre2, figura2);
-
-        jugadores.add(jugador1);
         jugadores.add(jugador2);
+        int turno2 = jugadores.size();
+        jugador2.setTurno(turno2);
 
         System.out.println("JUGADORES: \n" + jugadores);
 
