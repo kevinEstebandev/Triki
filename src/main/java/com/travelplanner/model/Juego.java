@@ -66,7 +66,7 @@ public class Juego {
 
     // metodo para jugar
     public void jugar (List < Jugador > listJugadores) {
-        Jugador jugadorGanador = iniciarRonda(listJugadores);
+        String jugadorGanador = iniciarRonda(listJugadores);
         String mensaje = generarMensaje(jugadorGanador);
         mostrarMensaje(mensaje);
     }
@@ -78,23 +78,27 @@ public class Juego {
         return posicion1;
     }
 
-    public Jugador iniciarRonda (List < Jugador > listJugadores) {
+    public String iniciarRonda (List < Jugador > listJugadores) {
         // optiene el primer jugador
         Jugador jugadorMomento = listJugadores.getFirst();
 
-        boolean stop = true;
         while (true) {
             System.out.println("va " + jugadorMomento);
             int posicion = pedirPosicionCasilla();
             boolean stopOcupado = armarTabla(posicion, jugadorMomento);
-            stop = pararJuegoSiGana(listJugadores);
+            boolean stopGanador = pararJuegoSiGana();
+            boolean stopEmpate = pararJuegoSiEmpate();
 
             if (!stopOcupado) {
                 continue;
             }
 
-            if (!stop) {
-                break;
+            if (!stopGanador) {
+                return jugadorMomento.getNombre();
+            }
+
+            if (stopEmpate) {
+                return "NADIE";
             }
 
             if (jugadorMomento.getTurno() == 1) {
@@ -105,7 +109,6 @@ public class Juego {
 
             }
         }
-        return jugadorMomento;
     }
 
 
@@ -126,7 +129,7 @@ public class Juego {
     }
 
 
-    public boolean pararJuegoSiGana (List < Jugador > listJugadores){
+    public boolean pararJuegoSiGana (){
         String c1 = listaCasillas.getFirst().get(1);
         String c2 = listaCasillas.get(1).get(2);
         String c3 = listaCasillas.get(2).get(3);
@@ -171,13 +174,65 @@ public class Juego {
         }
 
         else {
-            // aca debe estar la logica para que pare y que ninguno haya ganado
             return true;
         }
     }
 
-    public String generarMensaje(Jugador jugador) {
-        return "Felicidades " + jugador.toString() + " ha ganado. Besitos";
+    public boolean pararJuegoSiEmpate (){
+        String c1 = listaCasillas.getFirst().get(1);
+        String c2 = listaCasillas.get(1).get(2);
+        String c3 = listaCasillas.get(2).get(3);
+        String c4 = listaCasillas.get(3).get(4);
+        String c5 = listaCasillas.get(4).get(5);
+        String c6 = listaCasillas.get(5).get(6);
+        String c7 = listaCasillas.get(6).get(7);
+        String c8 = listaCasillas.get(7).get(8);
+        String c9 = listaCasillas.getLast().get(9);
+        
+        boolean booleano = false;
+        
+        if (c1 != "_" && c2 != "_" && c3 != "_" && c4 != "_" && c5 != "_" && c6 != "_" && c7 != "_" && c8 != "_" && c9 != "_") {
+            if (!(c1 == "x" && c2 == "x" && c3 == "x") && !(c1 == "o" && c2 == "o" && c3 == "o")){
+                booleano = true;
+            }
+
+            else if (!(c4 == "x" && c5 == "x" && c6 == "x") && !(c4 == "o" && c5 == "o" && c6 == "o")){
+                booleano =  true;
+            }
+
+            else if (!(c7 == "x" && c8 == "x" && c9 == "x") && !(c7 == "o" && c8 == "o" && c9 == "o")){
+                booleano =  true;
+            }
+
+            else if (!(c1 == "x" && c5 == "x" && c9 == "x") && !(c1 == "o" && c5 == "o" && c9 == "o")){
+                booleano =  true;
+            }
+
+            else if (!(c3 == "x" && c5 == "x" && c7 == "x") && !(c3 == "o" && c5 == "o" && c7 == "o")){
+                booleano =  true;
+            }
+
+            else if (!(c1 == "x" && c4 == "x" && c7 == "x") && !(c1 == "o" && c4 == "o" && c7 == "o")){
+                booleano =  true;
+            }
+
+            else if (!(c2 == "x" && c5 == "x" && c8 == "x") && !(c2 == "o" && c5 == "o" && c8 == "o")){
+                booleano =  true;
+            }
+
+            else if (!(c3 == "x" && c6 == "x" && c9 == "x") && !(c3 == "o" && c6 == "o" && c9 == "o")){
+                booleano =  true;
+            }
+
+            else {
+                booleano =  false;
+            }
+        }
+        return booleano;
+    }
+
+    public String generarMensaje(String mensaje) {
+        return mensaje + " ha ganado. Besitos";
     }
 
     public void mostrarMensaje(String mensaje) {
